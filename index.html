@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>homeStaging demo</title>
+  <!-- aframe library -->
+  <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+  <!-- using older builds that work well with older webaronarcore build for samsung s8 -->
+  <!-- FIXME: update libraries when stable build is released -->
+  <script src="https://rawgit.com/google-ar/three.ar.js/9d6f422ec14fbc744707be5afa2acc1750630b28/dist/three.ar.js"></script>
+  <script src="https://rawgit.com/chenzlabs/aframe-ar/a2373d6ef61fa73c33db4b5708cf9da96511862d/dist/aframe-ar.js"></script>
+  <!-- 3dio build that supports dynamic entities (walls, doors.. ) -->
+  <script src="https://rawgit.com/archilogic-com/3dio-js/architectural-toolkit/build/3dio.js"></script>
+  <!-- aframe components -->
+  <script src="./src/js/line-element.js"></script>
+  <script src="./src/js/cursor-3d.js"></script>
+  <link rel="stylesheet" type="text/css" href="./src/css/style.css">
+  <script>
+    AFRAME.registerComponent('shadow-material', {
+      init: function () {
+        this.material = this.el.getOrCreateObject3D('mesh').material = new THREE.ShadowMaterial();
+        this.material.opacity = 0.3;
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="controls">
+    <div id="tools">
+      <!-- tools to draw basic floor plan -->
+      <button class="btn-tool" id="wall">wall</button>
+      <button class="btn-tool" id="window">window</button>
+      <button class="btn-tool" id="door">door</button>
+    </div>
+    <br>
+    <button id="furnish">furnish</button>
+    <div id="styles">
+      <!-- style filters for furnishings -->
+      <button class="btn-style" id="nordic">nordic</button>
+      <button class="btn-style" id="minimal">minimal</button>
+      <button class="btn-style" id="urban">urban</button>
+    </div>
+    <br><br>
+    <button id="build">build</button>
+    <button id="floorplan">floor plan</button>
+    <button id="restart">restart</button>
+  </div>
+  <div id="svg-container">
+  </div>
+  <a-scene ar shadow="type: pcfsoft">
+    <a-entity light="type:directional; castShadow:true; intensity:0.5; shadowCameraTop:10;" position="0 2 0"></a-entity>
+    <a-entity light="type:ambient; color:#bbb"></a-entity>
+    <a-entity light="groundColor: #70b4ff; color: #ffae83; intensity: 0.4; type: hemisphere" position="1 0 0"></a-entity>
+    <a-plane class="collidable" width="50" height="50" rotation="-90 0 0" shadow="receive:true" material="color:#bb9; opacity:0.6"></a-plane>
+    <a-entity id="furnishings"></a-entity>
+    <a-entity id="structure" visible="false"></a-entity>
+    <a-entity id="drawing"></a-entity>
+    <a-entity id="cursor-3d" cursor-3d material="color:#ff5630" position="0 0 0">
+      <a-entity geometry="primitive:ring; radiusInner: 0.1; radiusOuter: 0.11; height: 0.02" material="color:#ff5630; shader:flat"  rotation="-90 0 0" position="0 0.01 0"></a-entity>
+      <a-entity geometry="primitve:box; width: 0.008; depth: 0.008; height: 1.2" material="color:#ff5630; shader:flat" position="0 0.6 0"></a-entity>
+    </a-entity>
+    <a-camera look-controls>
+      <a-entity id="raycaster"
+                cursor="rayOrigin: mouse; fuse:false;"
+                position="0 0 -1"
+                visible="false"
+                raycaster="objects: .collidable"
+                material="color: black; shader: flat">
+      </a-entity>
+    </a-camera>
+  </a-scene>
+  <script src="./src/js/app.js"></script>
+  <script src="./src/js/utils.js"></script>
+</body>
+</html>
