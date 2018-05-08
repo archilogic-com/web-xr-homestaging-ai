@@ -1,4 +1,4 @@
-# Web XR Home staging AI Demo
+# WebXR Home staging AI Demo
 
 This demo let's you draw a floor plan in AR
 
@@ -9,7 +9,7 @@ and then furnish it automatically.
 ![](https://storage.3d.io/535e624259ee6b0200000484/2017-09-13_11-42-23_XUM61N/home-staging-ai.gif)
 
 
-## WebAR phone
+## WebXR phone
 
 You'll need an WebXR enabled device<br>
 Currently this limits your choices to:
