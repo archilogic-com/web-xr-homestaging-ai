@@ -1,5 +1,7 @@
 # WebXR Home staging AI Demo
 
+try it out via  https://archilogic-com.github.io/web-xr-homestaging-ai/
+
 This demo let's you draw a floor plan in AR
 
 ![](https://storage.3d.io/535e624259ee6b0200000484/2017-09-13_11-56-39_wW7wLF/draw-plan.gif)
