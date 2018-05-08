@@ -18,6 +18,7 @@ var stylesEl = document.querySelector('#styles');
 
 // aframe elements
 var rayCasterEl = document.querySelector('#raycaster');
+var arRaycasterEl = document.querySelector('#ar-raycaster');
 var sceneEl = document.querySelector('a-scene');
 var camEl = document.querySelector('a-camera');
 var planeEl = document.querySelector('a-plane');
@@ -325,9 +326,9 @@ function hitTest(e) {
   var x = e.touches[0].pageX / window.innerWidth;
   var y = e.touches[0].pageY / window.innerHeight;
   console.log(x, y)
-  var vrDisplay = camEl.components.camera.camera.vrDisplay
-  var hits = vrDisplay.hitTest(x, y);
-  if (hits && hits.length) getPosFromHit(hits)
+  var arRaycaster = arRaycasterEl.components['ar-raycaster'];
+  var hits = arRaycaster.hitAR(x, y);
+  if (hits && hits.length) getPosFromHit(hits);
   else io3d.utils.ui.message.error('try again - ideally standing', { expire: 2000 })
 }
 
@@ -335,20 +336,12 @@ function getPosFromHit(hits) {
   // lets choose the last one which is most likely the floor
   console.log(hits.length, 'hits')
   var hit = hits[hits.length - 1]
-  if (!hit || !hit.modelMatrix) {
+  if (!hit || !hit.point) {
     throw new Error('placeObjectAtHit requires a VRHit object');
   }
-  const model = new THREE.Matrix4();
-  const tempPos = new THREE.Vector3();
-  const tempQuat = new THREE.Quaternion();
-  const tempScale = new THREE.Vector3();
-
-  model.fromArray(hit.modelMatrix);
-  model.decompose(tempPos, tempQuat, tempScale);
-
-  planeEl.setAttribute('position', AFRAME.utils.coordinates.stringify(tempPos))
-  furnishingEl.setAttribute('position', `0 ${tempPos.y} 0`)
-  structureEl.setAttribute('position', `0 ${tempPos.y} 0`)
+  planeEl.setAttribute('position', AFRAME.utils.coordinates.stringify(hit.point))
+  furnishingEl.setAttribute('position', `0 ${hit.point.y} 0`)
+  structureEl.setAttribute('position', `0 ${hit.point.y} 0`)
   canvasEl.removeEventListener('touchstart', hitTest, false);
   initMsg.close()
   io3d.utils.ui.message.success('floor detected - start', { expire: 1000 })
