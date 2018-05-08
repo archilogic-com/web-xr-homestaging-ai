@@ -3,17 +3,18 @@
 <head>
   <title>homeStaging demo</title>
   <!-- aframe library -->
-  <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
-  <!-- using older builds that work well with older webaronarcore build for samsung s8 -->
-  <!-- FIXME: update libraries when stable build is released -->
-  <script src="https://rawgit.com/google-ar/three.ar.js/9d6f422ec14fbc744707be5afa2acc1750630b28/dist/three.ar.js"></script>
-  <script src="https://rawgit.com/chenzlabs/aframe-ar/a2373d6ef61fa73c33db4b5708cf9da96511862d/dist/aframe-ar.js"></script>
-  <!-- 3dio build that supports dynamic entities (walls, doors.. ) -->
-  <script src="https://rawgit.com/archilogic-com/3dio-js/architectural-toolkit/build/3dio.js"></script>
+  <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+  <!-- three.ar.js & aframe-ar.js -->
+  <script src="https://rawgit.com/chenzlabs/three.ar.js/master/dist/three.ar.js"></script>
+  <script src="https://rawgit.com/chenzlabs/aframe-ar/ar-raycaster-pass-in-xy/dist/aframe-ar.js"></script>
+  <!-- 3dio.js for architectural toolkit and homestaging ai -->
+  <script src="https://dist.3d.io/3dio-js/1.2.x/3dio.min.js"></script>
   <!-- aframe components -->
   <script src="./src/js/line-element.js"></script>
   <script src="./src/js/cursor-3d.js"></script>
   <link rel="stylesheet" type="text/css" href="./src/css/style.css">
+  <!-- Prevent touch causing flicker on iOS. -->
+  <style> * { -webkit-tap-highlight-color: rgba(0,0,0,0); } </style>   
   <script>
     AFRAME.registerComponent('shadow-material', {
       init: function () {
