@@ -1,0 +1,14 @@
+{
+  "name": "homestaging-ai-web-xr",
+  "version": "1.0.0",
+  "description": "try it out via  https://archilogic-com.github.io/web-xr-homestaging-ai/",
+  "author": "frederic-schwarz",
+  "license": "MIT",
+  "devDependencies": {
+    "lite-server": "^2.4.0"
+  },
+  "scripts": {
+    "dev": "node_modules/.bin/lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

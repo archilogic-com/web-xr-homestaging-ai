@@ -19,8 +19,6 @@ var stylesEl = document.querySelector('#styles');
 // aframe elements
 var rayCasterEl = document.querySelector('#raycaster');
 var arRaycasterEl = document.querySelector('#ar-raycaster');
-var sceneEl = document.querySelector('a-scene');
-var camEl = document.querySelector('a-camera');
 var planeEl = document.querySelector('a-plane');
 var furnishingEl = document.querySelector('#furnishings');
 var structureEl = document.querySelector('#structure');
@@ -111,7 +109,7 @@ function addLine(args) {
     end = args.end,
     type = args.type,
     color = args.color || 'white',
-    parent = args.parent || drawingEl
+    parent = args.parent || drawingEl,
     box = document.createElement('a-entity'),
     l = distance(start, end),
     angle = pointAngle(start, end),
