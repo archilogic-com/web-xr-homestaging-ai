@@ -5,7 +5,7 @@
   "author": "frederic-schwarz",
   "license": "MIT",
   "devDependencies": {
-    "lite-server": "^2.4.0"
+    "lite-server": "^2.6.1"
   },
   "scripts": {
     "dev": "node_modules/.bin/lite-server",
